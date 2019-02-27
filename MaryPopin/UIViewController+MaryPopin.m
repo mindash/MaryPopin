@@ -266,6 +266,10 @@ CG_INLINE CGRect    BkRectInRectWithAlignementOption(CGRect myRect, CGRect refRe
                                  if (completion) {
                                      completion();
                                  }
+                                 if (self.dismissDimmingViewCompletionBlock){
+                                     self.dismissDimmingViewCompletionBlock()
+                                     self.dismissDimmingViewCompletionBlock = nil
+                                 }
                                  [self forwardAppearanceEndingIfNeeded:presentedPopin];
                              }];
         }
@@ -279,6 +283,12 @@ CG_INLINE CGRect    BkRectInRectWithAlignementOption(CGRect myRect, CGRect refRe
         if (completion) {
             completion();
         }
+        
+        if (self.dismissDimmingViewCompletionBlock){
+            self.dismissDimmingViewCompletionBlock()
+            self.dismissDimmingViewCompletionBlock = nil
+        }
+        
         [self forwardAppearanceEndingIfNeeded:presentedPopin];
     }
 }
